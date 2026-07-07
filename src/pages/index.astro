@@ -1,17 +1,207 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import catalog from '../data/products.json';
+
 const posts = (await getCollection('blog'))
   .filter((p) => !p.data.draft)
-  .sort((a, b) => +b.data.pubDate - +a.data.pubDate);
+  .sort((a, b) => +b.data.pubDate - +a.data.pubDate)
+  .slice(0, 2);
+
+const fmt = (n) => n.toLocaleString('ru-RU');
+
+const jsonld = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'BANKAY',
+  slogan: 'Наука красоты',
+  url: 'https://avelime768.github.io',
+  sameAs: ['https://www.wildberries.ru/seller/104241'],
+};
 ---
-<BaseLayout title="BANKAY — уход, который понятен" description="BANKAY: активы для кожи без похода к косметологу. Понятно, эстетично, доказательно. Разбираем ретинол, ниацинамид, кислоты — и как ими пользоваться.">
-  <h1>BANKAY — активы без косметолога</h1>
-  <p>Разбираем уход просто: что за актив, зачем коже и как применять. Эстетично, понятно, доказательно.</p>
-  <h2>Последние статьи</h2>
-  <ul>
-    {posts.map((p) => (
-      <li><a href={`/blog/${p.id}/`}>{p.data.title}</a></li>
-    ))}
-  </ul>
+<BaseLayout
+  title="BANKAY — наука красоты. Товары для дома и ухода на Wildberries"
+  description="BANKAY: моющие пылесосы с паром и сыворотки с рейтингом 4.9 на Wildberries. Эстетично, понятно, доказательно. Скоро — линейка активов: ретинол 2%, ниацинамид 5%."
+  jsonld={jsonld}
+>
+  <div class="shell">
+
+    <section class="hero">
+      <div class="hero-text">
+        <span class="chip">Бренд на Wildberries · рейтинг 4.9</span>
+        <h1>Наука красоты — <em>и чистого дома</em></h1>
+        <p>
+          BANKAY делает вещи, где всё честно: понятный состав, понятная инструкция,
+          честные отзывы. Без сложных слов и пустых обещаний.
+        </p>
+        <div class="cta">
+          <a class="btn" href="https://www.wildberries.ru/seller/104241">Смотреть все товары на WB</a>
+        </div>
+        <div class="proof">
+          <span>★ <b>4.9</b> средний рейтинг</span>
+          <span><b>3 711</b> отзывов у хита</span>
+          <span><b>6</b> товаров в каталоге</span>
+        </div>
+      </div>
+      <div class="hero-img">
+        <img src="/products/concept-retinol.jpg" alt="Лифтинг-сыворотка BANKAY с ретинолом 2% — концепт новой линейки" loading="eager" />
+        <span class="tag">Скоро в продаже</span>
+      </div>
+    </section>
+
+    <section id="dom">
+      <h2>Дом</h2>
+      <p class="sub">Моющие пылесосы с паром — химчистка дома, мебели и ковров своими руками.</p>
+      <div class="grid">
+        {catalog.home.map((p) => (
+          <article class="card">
+            <div class="ph"><img src={p.image} alt={p.name} loading="lazy" /></div>
+            <div class="body">
+              <h3>{p.name}</h3>
+              <div class="stars">★★★★★ <i>{p.rating} · {fmt(p.feedbacks)} отзывов</i></div>
+              <div class="row">
+                <span class="price">{fmt(p.price)} ₽</span>
+                <a class="buy" href={p.url}>На WB</a>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section id="krasota">
+      <h2>Красота</h2>
+      <p class="sub">Активы для дома — эффект видно в зеркале, а не только в рекламе.</p>
+      <div class="grid">
+        {catalog.beauty.map((p) => (
+          <article class="card">
+            <div class="ph"><img src={p.image} alt={p.name} loading="lazy" /></div>
+            <div class="body">
+              <h3>{p.name}</h3>
+              <div class="stars">★★★★★ <i>{p.rating} · {fmt(p.feedbacks)} отзывов</i></div>
+              <div class="row">
+                <span class="price">{fmt(p.price)} ₽</span>
+                <a class="buy" href={p.url}>На WB</a>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section id="novinki" class="upcoming">
+      <h2>Скоро: линейка «Наука красоты»</h2>
+      <p class="sub">Пять активов, которые мы готовим к запуску — с честными концентрациями на упаковке.</p>
+      <div class="grid">
+        {catalog.upcoming.map((p) => (
+          <article class="card soon">
+            <div class="ph">
+              {p.image
+                ? <img src={p.image} alt={`${p.name} — концепт BANKAY`} loading="lazy" />
+                : <div class="placeholder" aria-hidden="true"><span>B</span></div>}
+            </div>
+            <div class="body">
+              <span class="soon-tag">Скоро</span>
+              <h3>{p.name}</h3>
+              <p class="note">{p.note}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section>
+      <h2>Почему нам доверяют</h2>
+      <p class="sub">Три принципа BANKAY — в каждом товаре.</p>
+      <div class="values">
+        <div class="val"><h3>Эстетично</h3><p>Вещи, которые приятно держать в руках и ставить на видное место.</p></div>
+        <div class="val"><h3>Понятно</h3><p>Инструкция и состав без терминов — разберётся каждый.</p></div>
+        <div class="val"><h3>Доказательно</h3><p>Рейтинг 4.9 и тысячи честных отзывов вместо громких обещаний.</p></div>
+      </div>
+    </section>
+
+    <section id="journal">
+      <h2>Журнал</h2>
+      <p class="sub">Коротко о том, как работают активы — и как не навредить коже.</p>
+      <div class="blog">
+        {posts.map((p) => (
+          <a class="post" href={`/blog/${p.id}/`}>
+            <span class="tag">Активы</span>
+            <h3>{p.data.title}</h3>
+            <p>{p.data.description}</p>
+          </a>
+        ))}
+      </div>
+    </section>
+
+  </div>
 </BaseLayout>
+
+<style>
+  .hero{ display:grid; grid-template-columns:1.1fr .9fr; gap:44px; align-items:center; padding:44px 0 34px }
+  .chip{ display:inline-block; background:var(--card); border:1px solid var(--ring); color:var(--muted);
+    font-size:12px; letter-spacing:.12em; text-transform:uppercase; padding:8px 18px; border-radius:999px; margin-bottom:24px }
+  h1{ font:400 clamp(34px,5vw,54px)/1.15 Georgia,'Times New Roman',serif; margin:0 0 18px }
+  h1 em{ font-style:italic; color:var(--copper) }
+  .hero-text > p{ color:var(--muted); max-width:50ch; margin:0 0 28px }
+  .btn{ display:inline-block; background:var(--green); color:var(--green-ink); text-decoration:none;
+    padding:15px 30px; border-radius:999px; font-size:15px; font-weight:600 }
+  .btn:hover,.btn:focus{ opacity:.92 }
+  .proof{ display:flex; gap:12px; flex-wrap:wrap; margin-top:26px }
+  .proof span{ background:var(--card); border:1px solid var(--ring); border-radius:999px;
+    padding:8px 16px; font-size:13px; color:var(--muted) }
+  .proof b{ color:var(--ink); font-variant-numeric:tabular-nums }
+  .hero-img{ position:relative; border-radius:var(--radius); overflow:hidden;
+    box-shadow:0 22px 44px -26px rgba(46,70,56,.55) }
+  .hero-img img{ width:100%; display:block }
+  .hero-img .tag{ position:absolute; left:14px; bottom:14px; background:var(--copper); color:#FFF8F0;
+    font-size:12px; font-weight:700; letter-spacing:.08em; text-transform:uppercase;
+    padding:8px 14px; border-radius:999px }
+
+  section{ padding:44px 0 4px }
+  h2{ font:400 30px/1.2 Georgia,serif; margin:0 0 6px }
+  .sub{ color:var(--muted); font-size:14px; margin:0 0 28px }
+
+  .grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:20px }
+  .card{ background:var(--card); border:1px solid var(--ring); border-radius:var(--radius);
+    overflow:hidden; display:flex; flex-direction:column;
+    box-shadow:0 14px 30px -26px rgba(46,70,56,.5) }
+  .ph{ aspect-ratio:1/1; overflow:hidden; background:var(--bg) }
+  .ph img{ width:100%; height:100%; object-fit:cover; display:block }
+  .body{ padding:16px 18px 20px; display:flex; flex-direction:column; gap:9px; flex:1 }
+  .card h3{ font:600 14.5px/1.4 -apple-system,"Segoe UI",sans-serif; margin:0 }
+  .stars{ color:var(--copper); font-size:13px }
+  .stars i{ font-style:normal; color:var(--muted) }
+  .row{ display:flex; justify-content:space-between; align-items:center; margin-top:auto }
+  .price{ font:600 19px/1 Georgia,serif; font-variant-numeric:tabular-nums }
+  .buy{ text-decoration:none; background:var(--green); color:var(--green-ink);
+    font-size:13px; font-weight:600; padding:9px 18px; border-radius:999px }
+  .buy:hover,.buy:focus{ opacity:.9 }
+
+  .soon .placeholder{ width:100%; height:100%; display:flex; align-items:center; justify-content:center;
+    background:linear-gradient(150deg,#2E4638,#41604E) }
+  .soon .placeholder span{ font:400 64px/1 Georgia,serif; color:var(--copper-soft); opacity:.9 }
+  .soon-tag{ align-self:flex-start; background:var(--copper); color:#FFF8F0; font-size:11px; font-weight:700;
+    letter-spacing:.1em; text-transform:uppercase; padding:4px 12px; border-radius:999px }
+  .note{ color:var(--muted); font-size:13px; margin:0 }
+
+  .values{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px }
+  .val{ background:var(--card); border:1px solid var(--ring); border-radius:var(--radius);
+    padding:26px; text-align:center }
+  .val h3{ font:400 20px/1.3 Georgia,serif; margin:0 0 8px; color:var(--copper) }
+  .val p{ color:var(--muted); font-size:14px; margin:0 }
+
+  .blog{ display:grid; grid-template-columns:1fr 1fr; gap:20px }
+  .post{ background:var(--card); border:1px solid var(--ring); border-radius:var(--radius);
+    padding:26px; text-decoration:none; display:block }
+  .post:hover h3,.post:focus h3{ color:var(--copper) }
+  .post .tag{ font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--copper) }
+  .post h3{ font:400 21px/1.3 Georgia,serif; margin:10px 0 8px }
+  .post p{ color:var(--muted); font-size:14px; margin:0 }
+
+  @media (max-width:780px){
+    .hero{ grid-template-columns:1fr; padding-top:20px }
+    .values{ grid-template-columns:1fr }
+    .blog{ grid-template-columns:1fr }
+  }
+</style>

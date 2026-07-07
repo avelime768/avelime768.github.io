@@ -1,5 +1,5 @@
 ---
-// Минимальный layout: <head> с мета + слот контента + JSON-LD.
+// Layout: шапка/подвал в фирменном стиле BANKAY (зелёный + медь из концептов упаковки).
 const { title, description, jsonld } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 ---
@@ -13,13 +13,70 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <link rel="canonical" href={canonical} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
+    <meta name="theme-color" content="#2E4638" />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%232E4638'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-family='Georgia' font-size='18' fill='%23C29270'%3EB%3C/text%3E%3C/svg%3E" />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <link rel="alternate" type="application/rss+xml" title="Блог" href="/rss.xml" />
     {jsonld && <script type="application/ld+json" set:html={JSON.stringify(jsonld)} />}
   </head>
   <body>
-    <header><strong>BANKAY</strong> · <a href="/">Главная</a> · <a href="/blog">Блог</a></header>
+    <header class="site-header">
+      <div class="shell nav">
+        <a class="brand" href="/">BANKAY<span>наука красоты</span></a>
+        <nav>
+          <a href="/#dom">Дом</a>
+          <a href="/#krasota">Красота</a>
+          <a href="/#novinki">Новинки</a>
+          <a href="/blog/">Журнал</a>
+          <a class="wb" href="https://www.wildberries.ru/seller/104241">Мы на WB</a>
+        </nav>
+      </div>
+    </header>
     <main><slot /></main>
-    <footer><small>© {new Date().getFullYear()} BANKAY · уход, который понятен</small></footer>
+    <footer class="site-footer">
+      <div class="shell">
+        <p>BANKAY · наука красоты · ИП Газизуллин А.Р.</p>
+        <p><a href="https://www.wildberries.ru/seller/104241">Магазин на Wildberries · продавец 104241</a> · <a href="/blog/">Журнал</a></p>
+      </div>
+    </footer>
   </body>
 </html>
+
+<style is:global>
+  :root{
+    --bg:#F7F5F0; --card:#FFFFFF; --ink:#26302A; --muted:#6E7A70;
+    --green:#2E4638; --green-ink:#F4F1E9; --copper:#B0805B; --copper-soft:#C29270;
+    --ring:#E5E0D4; --radius:20px;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --bg:#1B221D; --card:#242D26; --ink:#EDEAE2; --muted:#9DA898;
+      --green:#8FAE9A; --green-ink:#17211B; --copper:#D3A87E; --copper-soft:#D3A87E; --ring:#33403A; }
+  }
+  *{ box-sizing:border-box }
+  body{ margin:0; background:var(--bg); color:var(--ink);
+    font:16px/1.65 -apple-system,"Segoe UI",Roboto,sans-serif; }
+  a{ color:inherit }
+  .shell{ max-width:1080px; margin:0 auto; padding:0 22px }
+  h1,h2,h3{ text-wrap:balance }
+
+  .site-header{ padding:16px 0 }
+  .nav{ display:flex; align-items:center; gap:20px; flex-wrap:wrap }
+  .brand{ text-decoration:none; font:700 19px/1 Georgia,'Times New Roman',serif; letter-spacing:.14em }
+  .brand span{ display:block; font:400 10px/1.5 -apple-system,"Segoe UI",sans-serif;
+    letter-spacing:.34em; text-transform:uppercase; color:var(--copper) }
+  .nav nav{ margin-left:auto; display:flex; gap:6px; flex-wrap:wrap; font-size:14px }
+  .nav nav a{ text-decoration:none; color:var(--muted); padding:8px 14px; border-radius:999px }
+  .nav nav a:hover,.nav nav a:focus{ background:var(--card); color:var(--ink) }
+  .nav nav a.wb{ color:var(--copper); font-weight:600 }
+
+  .site-footer{ margin-top:72px; padding:26px 0 44px; border-top:1px solid var(--ring);
+    font-size:13px; color:var(--muted); text-align:center }
+  .site-footer p{ margin:4px 0 }
+  .site-footer a{ color:var(--muted) }
+
+  /* Базовая типографика для страниц журнала */
+  main article{ max-width:680px; margin:0 auto; padding:24px 22px }
+  main article h1{ font:400 34px/1.2 Georgia,serif }
+  main article img{ max-width:100% }
+  main article pre{ overflow-x:auto }
+</style>

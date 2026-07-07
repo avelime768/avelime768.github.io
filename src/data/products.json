@@ -1,0 +1,92 @@
+{
+  "home": [
+    {
+      "id": 536891478,
+      "name": "Пылесос моющий для химчистки дома, мебели и ковров с паром",
+      "price": 11137,
+      "rating": 4.9,
+      "feedbacks": 1589,
+      "url": "https://www.wildberries.ru/catalog/536891478/detail.aspx",
+      "image": "/products/536891478.webp"
+    },
+    {
+      "id": 811000906,
+      "name": "Моющий пылесос с паром для мебели и дома",
+      "price": 11258,
+      "rating": 4.9,
+      "feedbacks": 1589,
+      "url": "https://www.wildberries.ru/catalog/811000906/detail.aspx",
+      "image": "/products/811000906.webp"
+    },
+    {
+      "id": 781540279,
+      "name": "Пылесос моющий для дома и для мебели с паром",
+      "price": 11244,
+      "rating": 4.9,
+      "feedbacks": 1589,
+      "url": "https://www.wildberries.ru/catalog/781540279/detail.aspx",
+      "image": "/products/781540279.webp"
+    },
+    {
+      "id": 1051404550,
+      "name": "Моющий пылесос с паром для дома, мебели и ковров",
+      "price": 12129,
+      "rating": 4.9,
+      "feedbacks": 1589,
+      "url": "https://www.wildberries.ru/catalog/1051404550/detail.aspx",
+      "image": "/products/1051404550.webp"
+    }
+  ],
+  "beauty": [
+    {
+      "id": 1153030604,
+      "name": "Сыворотка для роста ресниц и бровей",
+      "price": 1087,
+      "rating": 4.9,
+      "feedbacks": 3711,
+      "url": "https://www.wildberries.ru/catalog/1153030604/detail.aspx",
+      "image": "/products/1153030604.webp"
+    },
+    {
+      "id": 684311040,
+      "name": "Сыворотка для роста ресниц и бровей",
+      "price": 1059,
+      "rating": 4.9,
+      "feedbacks": 518,
+      "url": "https://www.wildberries.ru/catalog/684311040/detail.aspx",
+      "image": "/products/684311040.webp"
+    }
+  ],
+  "upcoming": [
+    {
+      "slug": "retinol",
+      "name": "Лифтинг-сыворотка с ретинолом 2% и микроиглами",
+      "note": "Разглаживание морщин · текстура · плотность",
+      "image": "/products/concept-retinol.jpg"
+    },
+    {
+      "slug": "niacinamide",
+      "name": "Сыворотка с ниацинамидом 5% — сияние кожи",
+      "note": "Выравнивает тон · уменьшает покраснения",
+      "image": "/products/concept-niacinamide.jpg"
+    },
+    {
+      "slug": "eye-cream",
+      "name": "Крем вокруг глаз",
+      "note": "Уход за нежной кожей век",
+      "image": null
+    },
+    {
+      "slug": "hair-serum",
+      "name": "Сыворотка для волос",
+      "note": "Рост + качество волос + здоровье кожи головы",
+      "image": null
+    },
+    {
+      "slug": "acid-gel",
+      "name": "Гель для душа с кислотами",
+      "note": "Мягкое обновление кожи тела",
+      "image": null
+    }
+  ]
+}
