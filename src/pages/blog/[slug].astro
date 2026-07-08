@@ -17,11 +17,17 @@ const jsonld = {
   headline: post.data.title,
   description: post.data.description,
   datePublished: post.data.pubDate.toISOString(),
+  ...(post.data.heroImage && { image: new URL(post.data.heroImage, Astro.site).href }),
 };
 ---
-<BaseLayout title={post.data.title} description={post.data.description} jsonld={jsonld}>
+<BaseLayout title={post.data.title} description={post.data.description} jsonld={jsonld} image={post.data.heroImage}>
   <article>
     <h1>{post.data.title}</h1>
+    {post.data.heroImage && <img class="hero" src={post.data.heroImage} alt={post.data.title} loading="eager" />}
     <Content />
   </article>
 </BaseLayout>
+
+<style>
+  .hero{ width:100%; border-radius:var(--radius); margin:18px 0 6px; aspect-ratio:16/10; object-fit:cover }
+</style>
