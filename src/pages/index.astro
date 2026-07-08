@@ -29,17 +29,17 @@ const jsonld = {
     <section class="hero">
       <div class="hero-text">
         <span class="chip">Бренд на Wildberries · рейтинг 4.9</span>
-        <h1>Наука красоты — <em>и чистого дома</em></h1>
+        <h1>Наука красоты — <em>для кожи, волос и дома</em></h1>
         <p>
-          BANKAY делает вещи, где всё честно: понятный состав, понятная инструкция,
-          честные отзывы. Без сложных слов и пустых обещаний.
+          BANKAY — уход и техника для дома, где всё честно: рабочие концентрации
+          на упаковке, понятные инструкции и тысячи живых отзывов.
         </p>
         <div class="cta">
           <a class="btn" href="https://www.wildberries.ru/seller/104241">Смотреть все товары на WB</a>
         </div>
         <div class="proof">
           <span>★ <b>4.9</b> средний рейтинг</span>
-          <span><b>3 711</b> отзывов у хита</span>
+          <span><b>5 800+</b> отзывов на Wildberries</span>
           <span><b>6</b> товаров в каталоге</span>
         </div>
       </div>
@@ -71,7 +71,7 @@ const jsonld = {
 
     <section id="krasota">
       <h2>Красота</h2>
-      <p class="sub">Активы для дома — эффект видно в зеркале, а не только в рекламе.</p>
+      <p class="sub">Сыворотки с рабочими концентрациями — эффект видно в зеркале, а не только в рекламе.</p>
       <div class="grid">
         {catalog.beauty.map((p) => (
           <article class="card">
@@ -152,9 +152,9 @@ const jsonld = {
     padding:8px 16px; font-size:13px; color:var(--muted) }
   .proof b{ color:var(--ink); font-variant-numeric:tabular-nums }
   .hero-img{ position:relative; border-radius:var(--radius); overflow:hidden;
-    box-shadow:0 22px 44px -26px rgba(46,70,56,.55) }
+    box-shadow:0 22px 44px -26px rgba(58,90,72,.55) }
   .hero-img img{ width:100%; display:block }
-  .hero-img .tag{ position:absolute; left:14px; bottom:14px; background:var(--copper); color:#FFF8F0;
+  .hero-img .tag{ position:absolute; left:14px; bottom:14px; background:var(--copper); color:var(--green-ink);
     font-size:12px; font-weight:700; letter-spacing:.08em; text-transform:uppercase;
     padding:8px 14px; border-radius:999px }
 
@@ -165,7 +165,7 @@ const jsonld = {
   .grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:20px }
   .card{ background:var(--card); border:1px solid var(--ring); border-radius:var(--radius);
     overflow:hidden; display:flex; flex-direction:column;
-    box-shadow:0 14px 30px -26px rgba(46,70,56,.5) }
+    box-shadow:0 14px 30px -26px rgba(58,90,72,.5) }
   .ph{ aspect-ratio:1/1; overflow:hidden; background:var(--bg) }
   .ph img{ width:100%; height:100%; object-fit:cover; display:block }
   .body{ padding:16px 18px 20px; display:flex; flex-direction:column; gap:9px; flex:1 }
@@ -179,9 +179,9 @@ const jsonld = {
   .buy:hover,.buy:focus{ opacity:.9 }
 
   .soon .placeholder{ width:100%; height:100%; display:flex; align-items:center; justify-content:center;
-    background:linear-gradient(150deg,#2E4638,#41604E) }
-  .soon .placeholder span{ font:400 64px/1 Georgia,serif; color:var(--copper-soft); opacity:.9 }
-  .soon-tag{ align-self:flex-start; background:var(--copper); color:#FFF8F0; font-size:11px; font-weight:700;
+    background:linear-gradient(150deg,#3A5A48,#527A63) }
+  .soon .placeholder span{ font:400 64px/1 Georgia,serif; color:#FBFAF7; opacity:.85 }
+  .soon-tag{ align-self:flex-start; background:var(--copper); color:var(--green-ink); font-size:11px; font-weight:700;
     letter-spacing:.1em; text-transform:uppercase; padding:4px 12px; border-radius:999px }
   .note{ color:var(--muted); font-size:13px; margin:0 }
 

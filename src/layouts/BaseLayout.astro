@@ -1,5 +1,5 @@
 ---
-// Layout: шапка/подвал в фирменном стиле BANKAY (зелёный + медь из концептов упаковки).
+// Layout: шапка/подвал в фирменном стиле BANKAY (кремовый фон + глубокий зелёный, концепт «Галерея»).
 const { title, description, jsonld } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 ---
@@ -13,8 +13,8 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <link rel="canonical" href={canonical} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta name="theme-color" content="#2E4638" />
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%232E4638'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-family='Georgia' font-size='18' fill='%23C29270'%3EB%3C/text%3E%3C/svg%3E" />
+    <meta name="theme-color" content="#3A5A48" />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%233A5A48'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-family='Georgia' font-size='18' fill='%23FBFAF7'%3EB%3C/text%3E%3C/svg%3E" />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <link rel="alternate" type="application/rss+xml" title="Блог" href="/rss.xml" />
     {jsonld && <script type="application/ld+json" set:html={JSON.stringify(jsonld)} />}
@@ -44,13 +44,13 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
 
 <style is:global>
   :root{
-    --bg:#F7F5F0; --card:#FFFFFF; --ink:#26302A; --muted:#6E7A70;
-    --green:#2E4638; --green-ink:#F4F1E9; --copper:#B0805B; --copper-soft:#C29270;
-    --ring:#E5E0D4; --radius:20px;
+    --bg:#FBFAF7; --card:#FFFFFF; --ink:#1F1E1A; --muted:#6E6A5E;
+    --green:#3A5A48; --green-ink:#FBFAF7; --copper:#3A5A48; --copper-soft:#5E7F6C;
+    --ring:#E5E1D8; --radius:20px;
   }
   @media (prefers-color-scheme: dark){
-    :root{ --bg:#1B221D; --card:#242D26; --ink:#EDEAE2; --muted:#9DA898;
-      --green:#8FAE9A; --green-ink:#17211B; --copper:#D3A87E; --copper-soft:#D3A87E; --ring:#33403A; }
+    :root{ --bg:#171611; --card:#1F1E18; --ink:#EFEBE0; --muted:#9B968A;
+      --green:#7FA98F; --green-ink:#14130F; --copper:#7FA98F; --copper-soft:#7FA98F; --ring:#33312A; }
   }
   *{ box-sizing:border-box }
   body{ margin:0; background:var(--bg); color:var(--ink);
